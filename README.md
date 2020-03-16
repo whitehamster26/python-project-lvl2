@@ -5,3 +5,7 @@
 <h3>Travis Check</h3>
 
 [![Build Status](https://travis-ci.org/whitehamster26/python-project-lvl2.svg?branch=master)](https://travis-ci.org/whitehamster26/python-project-lvl2)
+
+<h3>Demo</h3>
+
+[![asciicast](https://asciinema.org/a/vRGKekZHRJC0yKhciNwp7E9ZP.svg)](https://asciinema.org/a/vRGKekZHRJC0yKhciNwp7E9ZP)
