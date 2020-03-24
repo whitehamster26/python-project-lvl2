@@ -12,9 +12,12 @@ python = "^3.6"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.7.9"
+pytest = "^5.4.1"
+pytest-cov = "^2.8.1"
 
 [tool.poetry.scripts]
 gendiff = "gendiff.scripts.gendiff_run:main"
+tests = "gendiff.scripts.tests_run:main"
 
 [[tool.poetry.source]]
 name = "whitehamster26_gendiff"
