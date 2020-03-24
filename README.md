@@ -8,4 +8,10 @@
 
 <h3>Demo</h3>
 
-[![asciicast](https://asciinema.org/a/vRGKekZHRJC0yKhciNwp7E9ZP.svg)](https://asciinema.org/a/vRGKekZHRJC0yKhciNwp7E9ZP)
+<h4>Json compare</h4>
+
+[![asciicast](https://asciinema.org/a/xyYxx7vzB43SnRGfR0XZZTbyQ.svg)](https://asciinema.org/a/xyYxx7vzB43SnRGfR0XZZTbyQ)
+
+<h4>Yaml compare</h4>
+
+[![asciicast](https://asciinema.org/a/nWE8DUCD65IK838nGawiJznVM.svg)](https://asciinema.org/a/nWE8DUCD65IK838nGawiJznVM)

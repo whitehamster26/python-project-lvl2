@@ -1,4 +1,4 @@
-import json
+from gendiff import parsers
 
 
 def make_result(source, key, value, sign=None, spaces=2):
@@ -14,8 +14,8 @@ def make_result(source, key, value, sign=None, spaces=2):
 
 
 def generate_diff(first_file, second_file, format=None):
-    first_file_data = json.load(open(first_file))
-    second_file_data = json.load(open(second_file))
+    first_file_data, second_file_data =\
+         parsers.parse_data(format, first_file, second_file)
     result = '{' + '\n'
     for key in first_file_data:
         if key in second_file_data:
@@ -34,5 +34,7 @@ def generate_diff(first_file, second_file, format=None):
 
 
 def show_difference(first_file, second_file, format=None):
-    print(generate_diff(first_file, second_file, format=None))
+    if not format:
+        format = parsers.parse_format(first_file)
+    print(generate_diff(first_file, second_file, format))
     return None

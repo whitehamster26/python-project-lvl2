@@ -12,7 +12,7 @@ parser.add_argument('-f', '--format', type=str, help='set format of \
 
 
 def main():
-    args = parser.parse_args()  # noqa: F841
+    args = parser.parse_args()
     gendiff.show_difference(args.first_file, args.second_file, args.format)
     return None
 
