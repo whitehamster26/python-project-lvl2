@@ -8,10 +8,14 @@
 
 <h3>Demo</h3>
 
-<h4>Json compare</h4>
+<h4>Json comparison</h4>
 
 [![asciicast](https://asciinema.org/a/xyYxx7vzB43SnRGfR0XZZTbyQ.svg)](https://asciinema.org/a/xyYxx7vzB43SnRGfR0XZZTbyQ)
 
-<h4>Yaml compare</h4>
+<h4>Yaml comparison</h4>
 
 [![asciicast](https://asciinema.org/a/nWE8DUCD65IK838nGawiJznVM.svg)](https://asciinema.org/a/nWE8DUCD65IK838nGawiJznVM)
+
+<h4>Comparison of nested structures</h4>
+
+[![asciicast](https://asciinema.org/a/m9ifVQ6qxjAJjUFyc3jl7AjnG.svg)](https://asciinema.org/a/m9ifVQ6qxjAJjUFyc3jl7AjnG)
