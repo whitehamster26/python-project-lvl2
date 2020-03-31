@@ -3,7 +3,7 @@ import yaml
 
 
 def parse_format(file_name):
-    dot_index = file_name.find('.')
+    dot_index = file_name.rfind('.')
     file_format = file_name[dot_index+1:len(file_name)]
     if file_format == 'yml':
         return 'yaml'

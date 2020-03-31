@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "whitehamster26_gendiff"
-version = "0.2.1"
+version = "0.3.1"
 description = "Show the difference between two config files"
 authors = ["whitehamster26"]
 packages = [
@@ -18,7 +18,7 @@ pytest-cov = "^2.8.1"
 
 [tool.poetry.scripts]
 gendiff = "gendiff.scripts.gendiff_run:main"
-tests = "gendiff.scripts.tests_run:main"
+gendiff_tests = "gendiff.scripts.tests_run:main"
 
 [[tool.poetry.source]]
 name = "whitehamster26_gendiff"

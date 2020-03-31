@@ -19,3 +19,7 @@
 <h4>Comparison of nested structures</h4>
 
 [![asciicast](https://asciinema.org/a/m9ifVQ6qxjAJjUFyc3jl7AjnG.svg)](https://asciinema.org/a/m9ifVQ6qxjAJjUFyc3jl7AjnG)
+
+<h4>Plain text format demo</h4>
+
+[![asciicast](https://asciinema.org/a/nqySFLZ6i4mdFbvpS9uCXXiRq.svg)](https://asciinema.org/a/nqySFLZ6i4mdFbvpS9uCXXiRq)

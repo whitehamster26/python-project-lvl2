@@ -1,5 +1,6 @@
 import argparse
-from gendiff import gendiff
+from gendiff import gendiff, parsers
+from gendiff.formatters import json_like_rendering, plain_text_rendering
 
 
 parser = argparse.ArgumentParser(description='Generate diff')
@@ -13,7 +14,14 @@ parser.add_argument('-f', '--format', type=str, help='set format of \
 
 def main():
     args = parser.parse_args()
-    gendiff.show_difference(args.first_file, args.second_file, args.format)
+    file_format = parsers.parse_format(args.first_file)
+    first_file_data, second_file_data = \
+        parsers.parse_data(file_format, args.first_file, args.second_file)
+    diff = gendiff.generate_diff(first_file_data, second_file_data)
+    if not args.format:
+        print(json_like_rendering.diff_rendering(diff))
+    elif args.format == 'plain':
+        print(plain_text_rendering.diff_rendering(diff))
     return None
 
 
