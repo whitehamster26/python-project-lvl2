@@ -23,3 +23,7 @@
 <h4>Plain text format demo</h4>
 
 [![asciicast](https://asciinema.org/a/nqySFLZ6i4mdFbvpS9uCXXiRq.svg)](https://asciinema.org/a/nqySFLZ6i4mdFbvpS9uCXXiRq)
+
+<h4>Json format demo</h4>
+
+[![asciicast](https://asciinema.org/a/aBUNdnQIw5teZln9cHKMdaVbG.svg)](https://asciinema.org/a/aBUNdnQIw5teZln9cHKMdaVbG)

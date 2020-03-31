@@ -29,13 +29,9 @@ def diff_rendering(items, spaces=2):
                                                 spaces=spaces+4),
                                  spaces,
                                  sign=RENDER_SIGNS[items[item][0]])
-        elif items[item][0] == 'added':
-            result = make_result(result, item, items[item][1], spaces, '+')
-        elif items[item][0] == 'deleted':
-            result = make_result(result, item, items[item][1], spaces, '-')
-        elif items[item][0] == 'unmodified':
-            result = make_result(result, item, items[item][1],
-                                 spaces, sign=None)
+        elif items[item][0] in RENDER_SIGNS.keys():
+            result = make_result(result, item, items[item][1], spaces,
+                                 RENDER_SIGNS[items[item][0]])
         elif items[item][0] == 'replaced':
             result = make_result(result, item, items[item][1], spaces, '+')
             result = make_result(result, item, items[item][2], spaces, '-')

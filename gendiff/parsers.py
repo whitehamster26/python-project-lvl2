@@ -28,3 +28,7 @@ def parse_data(format, first_file, second_file):
             return json_parse(first_file, second_file)
         elif format == 'yaml':
             return yaml_parse(first_file, second_file)
+
+
+def json_convert(data):
+    return json.dumps(data)

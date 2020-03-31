@@ -1,6 +1,7 @@
 import pytest # noqa F401
 from gendiff import gendiff, parsers
 from gendiff.formatters import json_like_rendering, plain_text_rendering
+from gendiff.formatters import json_rendering
 
 
 def json_gendiff():
@@ -37,7 +38,18 @@ def plain_test():
     assert plain_text_rendering.diff_rendering(diff) == test_case
 
 
+def json_test():
+    result_source = open('./gendiff/tests/fixtures/expected_json_format.json',
+                         'r')
+    test_case = result_source.read()
+    first_file_data, second_file_data = parsers.json_parse('./gendiff\
+/tests/fixtures/before.json', './gendiff/tests/fixtures/after.json')
+    diff = gendiff.generate_diff(first_file_data, second_file_data)
+    assert json_rendering.json_formatting(diff) == test_case
+
+
 def do_tests():
     json_gendiff()
     yaml_gendiff()
     plain_test()
+    json_test()

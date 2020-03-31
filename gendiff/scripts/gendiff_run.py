@@ -1,6 +1,7 @@
 import argparse
 from gendiff import gendiff, parsers
 from gendiff.formatters import json_like_rendering, plain_text_rendering
+from gendiff.formatters import json_rendering
 
 
 parser = argparse.ArgumentParser(description='Generate diff')
@@ -22,6 +23,8 @@ def main():
         print(json_like_rendering.diff_rendering(diff))
     elif args.format == 'plain':
         print(plain_text_rendering.diff_rendering(diff))
+    elif args.format == 'json':
+        print(json_rendering.json_formatting(diff))
     return None
 
 
