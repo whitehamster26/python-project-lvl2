@@ -1,12 +1,25 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=a413879b6f692c4bb38b1da3c5278501e0c0fe99d0a72a5589f118a7521e0d98
+
 language: python
 python: 3.6
 
 before_install:
+  # make depends on poetry
   - pip install poetry
 
 install:
   - make install
 
-script:
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+script: 
   - make lint
   - make test
+
+after_script:  
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
