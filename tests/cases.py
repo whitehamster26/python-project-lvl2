@@ -1,4 +1,3 @@
-import pytest # noqa F401
 from gendiff import gendiff, parsers
 from gendiff.formatters import json_like_rendering, plain_text_rendering
 from gendiff.formatters import json_rendering

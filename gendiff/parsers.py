@@ -1,34 +1,18 @@
 import json
 import yaml
+import os
 
 
-def parse_format(file_name):
-    dot_index = file_name.rfind('.')
-    file_format = file_name[dot_index+1:len(file_name)]
-    if file_format == 'yml':
-        return 'yaml'
-    return file_format
+def get_data(source_file):
+    file_format = os.path.splitext(source_file)[1]
+    return _parse_data(file_format, source_file)
 
 
-def json_parse(first_file, second_file):
-    first_file_data = json.load(open(first_file))
-    second_file_data = json.load(open(second_file))
-    return first_file_data, second_file_data
-
-
-def yaml_parse(first_file, second_file):
-    first_file_data = yaml.safe_load(open(first_file))
-    second_file_data = yaml.safe_load(open(second_file))
-    return first_file_data, second_file_data
-
-
-def parse_data(format, first_file, second_file):
-    if format:
-        if format == 'json':
-            return json_parse(first_file, second_file)
-        elif format == 'yaml':
-            return yaml_parse(first_file, second_file)
-
-
-def json_convert(data):
-    return json.dumps(data)
+def _parse_data(format, source_file):
+    with open(source_file, 'r') as f:
+        if format == '.json':
+            return json.load(f)
+        elif format in ('.yaml', '.yml'):
+            return yaml.safe_load(f)
+        else:
+            raise Exception('Fromat is not supported.')
