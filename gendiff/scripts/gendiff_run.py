@@ -24,7 +24,7 @@ def main():
         raise Exception('Format is not supported.')
     first_file_data = parsers.get_data(args.first_file)
     second_file_data = parsers.get_data(args.second_file)
-    diff = gendiff.generate_diff(first_file_data, second_file_data)
+    diff = gendiff.build_diff(first_file_data, second_file_data)
     print(format_diff(diff))
 
 
