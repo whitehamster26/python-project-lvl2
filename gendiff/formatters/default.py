@@ -1,39 +1,39 @@
-RENDER_SIGNS = {'unmodified': None,
-                'added': '+',
-                'deleted': '-'}
+from gendiff.gendiff import UNMODIFIED, DELETED, ADDED, REPLACED, NESTED
+
+RENDER_SIGNS = {UNMODIFIED: None,
+                ADDED: '+',
+                DELETED: '-',
+                NESTED: None}
 
 
-def make_result(source, key, value, spaces, sign=None):
+def make_result(key, value, spaces, sign=None):
     string_spaces = '' + (' ' * spaces)
     if not sign:
         sign = ' '
     if value is True:
         value = 'true'
     result = f'{string_spaces}{sign} {key}: {value}\n'
-    return source + result
+    return result
 
 
-def diff_rendering(items, spaces=2):
-    result = ((' ' * (spaces-spaces)) + '{' + '\n')
-    for item in items:
-        if items[item][0] == 'nested':
-            result = make_result(result, item,
-                                 diff_rendering(items[item][1],
-                                                spaces=spaces+4),
-                                 spaces,
-                                 sign=None)
-        elif items[item][0] in RENDER_SIGNS.keys() and \
-                isinstance(items[item][1], dict):
-            result = make_result(result, item,
-                                 diff_rendering(items[item][1],
-                                                spaces=spaces+4),
-                                 spaces,
-                                 sign=RENDER_SIGNS[items[item][0]])
-        elif items[item][0] in RENDER_SIGNS.keys():
-            result = make_result(result, item, items[item][1], spaces,
-                                 RENDER_SIGNS[items[item][0]])
-        elif items[item][0] == 'replaced':
-            result = make_result(result, item, items[item][1], spaces, '+')
-            result = make_result(result, item, items[item][2], spaces, '-')
-    result = result + ((' ' * (spaces-2)) + '}')
+def render_diff(diff, spaces=2):
+    result = '{' + '\n'
+    for item in diff.items():
+        if item[1][0] == NESTED:
+            result += make_result(item[0],
+                                  render_diff(item[1][1],
+                                  spaces=spaces+4),
+                                  spaces)
+        elif isinstance(item[1][1], dict):
+            result += make_result(item[0],
+                                  render_diff(item[1][1], spaces=spaces+4),
+                                  spaces, sign=RENDER_SIGNS[item[1][0]])
+        elif item[1][0] == REPLACED:
+            # need to build a new tree if any key has objects
+            result += make_result(item[0], item[1][1], spaces=spaces, sign='+')
+            result += make_result(item[0], item[1][2], spaces=spaces, sign='-')
+        else:
+            result += make_result(item[0], item[1][1], spaces=spaces,
+                                  sign=RENDER_SIGNS[item[1][0]])
+    result += ' ' * (spaces-2) + '}'
     return result
