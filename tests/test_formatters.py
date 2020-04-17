@@ -32,3 +32,12 @@ def test_plain():
         second_file = parsers.get_data(f'{PATH}after.json')
         diff = gendiff.build_diff(first_file, second_file)
         assert formatters.plain(diff) == expected_result
+
+
+def test_json():
+    with open(f'{PATH}expected_result.json', 'r') as f:
+        expected_result = f.read()
+        first_file = parsers.get_data(f'{PATH}before.json')
+        second_file = parsers.get_data(f'{PATH}after.json')
+        diff = gendiff.build_diff(first_file, second_file)
+        assert formatters.json(diff) == expected_result

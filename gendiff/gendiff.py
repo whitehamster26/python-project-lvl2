@@ -13,18 +13,24 @@ def build_tree(data):
     return result
 
 
-def safe_put(status, value, second_value=None):
-    if second_value:
-        if isinstance(value, dict) and not isinstance(second_value, dict):
-            return status, build_tree(value), second_value
-        elif not isinstance(value, dict) and isinstance(second_value, dict):
-            return status, value, build_tree(second_value)
-        else:
-            return status, value, second_value
-    if isinstance(value, dict):
-        return status, build_tree(value)
+def ternary_safe_put(status, value, second_value):
+    result = None
+    if isinstance(value, dict) and not isinstance(second_value, dict):
+        result = status, build_tree(value), second_value
+    elif not isinstance(value, dict) and isinstance(second_value, dict):
+        result = status, value, build_tree(second_value)
     else:
-        return status, value
+        result = status, value, second_value
+    return result
+
+
+def safe_put(status, value):
+    result = None
+    if isinstance(value, dict):
+        result = status, build_tree(value)
+    else:
+        result = status, value
+    return result
 
 
 def build_status(first_dict, second_dict):
@@ -47,7 +53,8 @@ def build_diff(primary_data, modified_data):
             elif value == modified_data[key]:
                 diff[key] = (UNMODIFIED, value)
             else:
-                diff[key] = safe_put(REPLACED, modified_data[key], value)
+                diff[key] = ternary_safe_put(REPLACED, modified_data[key],
+                                             value)
         elif key in keys_status[DELETED]:
             diff[key] = safe_put(DELETED, value)
     for key, value in modified_data.items():

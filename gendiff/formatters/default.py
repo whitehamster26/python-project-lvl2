@@ -18,22 +18,31 @@ def make_result(key, value, spaces, sign=None):
 
 def render_diff(diff, spaces=2):
     result = '{' + '\n'
-    for item in diff.items():
-        if item[1][0] == NESTED:
-            result += make_result(item[0],
-                                  render_diff(item[1][1],
-                                  spaces=spaces+4),
+    for key, value in diff.items():
+        if value[0] == NESTED:
+            result += make_result(key,
+                                  render_diff(value[1], spaces=spaces+4),
                                   spaces)
-        elif isinstance(item[1][1], dict):
-            result += make_result(item[0],
-                                  render_diff(item[1][1], spaces=spaces+4),
-                                  spaces, sign=RENDER_SIGNS[item[1][0]])
-        elif item[1][0] == REPLACED:
-            # need to build a new tree if any key has objects
-            result += make_result(item[0], item[1][1], spaces=spaces, sign='+')
-            result += make_result(item[0], item[1][2], spaces=spaces, sign='-')
+        elif isinstance(value[1], dict) and not value[0] == REPLACED:
+            result += make_result(key,
+                                  render_diff(value[1], spaces=spaces+4),
+                                  spaces, sign=RENDER_SIGNS[value[0]])
+        elif value[0] == REPLACED:
+            if isinstance(value[1], dict) and not isinstance(value[2], dict):
+                result += make_result(key, render_diff(value[1],
+                                                       spaces=spaces+4),
+                                      spaces=spaces, sign='+')
+                result += make_result(key, value[2], spaces=spaces, sign='-')
+            elif not isinstance(value[1], dict) and isinstance(value[2], dict):
+                result += make_result(key, value[1], spaces=spaces, sign='+')
+                result += make_result(key, render_diff(value[2],
+                                                       spaces=spaces+4),
+                                      spaces=spaces, sign='-')
+            else:
+                result += make_result(key, value[1], spaces=spaces, sign='+')
+                result += make_result(key, value[2], spaces=spaces, sign='-')
         else:
-            result += make_result(item[0], item[1][1], spaces=spaces,
-                                  sign=RENDER_SIGNS[item[1][0]])
+            result += make_result(key, value[1], spaces=spaces,
+                                  sign=RENDER_SIGNS[value[0]])
     result += ' ' * (spaces-2) + '}'
     return result

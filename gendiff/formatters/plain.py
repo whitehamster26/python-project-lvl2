@@ -11,6 +11,8 @@ def make_result(key, value, status, replaced_value=None):
     elif status == ADDED:
         result = f"Property '{key}' was added with value: '{value}'"
     elif status == REPLACED:
+        if isinstance(replaced_value, dict):
+            replaced_value = 'complex value'
         result = f"Property '{key}' was changed. From '{replaced_value}' to \
 '{value}'"
     return result + '\n'
@@ -18,14 +20,14 @@ def make_result(key, value, status, replaced_value=None):
 
 def render_diff(diff, root_key=None):
     result = ''
-    for item in diff.items():
-        tree_items = f"{root_key}.{item[0]}" if root_key else item[0]
-        if item[1][0] == NESTED:
-            result += render_diff(item[1][1], tree_items) + '\n'
-        elif item[1][0] == REPLACED:
-            result += make_result(tree_items, item[1][1],
-                                  REPLACED, item[1][2])
-        elif item[1][0] in (ADDED, DELETED):
-            result += make_result(tree_items, item[1][1],
-                                  item[1][0])
+    for key, value in diff.items():
+        tree_items = f"{root_key}.{key}" if root_key else key
+        if value[0] == NESTED:
+            result += render_diff(value[1], tree_items) + '\n'
+        elif value[0] == REPLACED:
+            result += make_result(tree_items, value[1],
+                                  REPLACED, value[2])
+        elif value[0] in (ADDED, DELETED):
+            result += make_result(tree_items, value[1],
+                                  value[0])
     return result.rstrip('\n')
