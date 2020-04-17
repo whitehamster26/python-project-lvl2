@@ -15,6 +15,7 @@
 <h3>Usage<h3>
 
 <code>gendiff [-h] [-f FORMAT] first_file second_file</code>
+
 <p>Supported output formats: plain, json and json-like by default</p>
 <p>Supported file formats: .yaml, .json</p>
 
