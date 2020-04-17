@@ -46,14 +46,15 @@ def build_diff(primary_data, modified_data):
     keys_status = build_status(primary_data, modified_data)
     for key, value in primary_data.items():
         if key in keys_status[UNMODIFIED]:
-            if isinstance(value, dict) and isinstance(modified_data[key],
+            common_key = modified_data[key]
+            if isinstance(value, dict) and isinstance(common_key,
                                                       dict):
                 diff[key] = (NESTED, build_diff(value,
-                             modified_data[key]))
-            elif value == modified_data[key]:
+                             common_key))
+            elif value == common_key:
                 diff[key] = (UNMODIFIED, value)
             else:
-                diff[key] = ternary_safe_put(REPLACED, modified_data[key],
+                diff[key] = ternary_safe_put(REPLACED, common_key,
                                              value)
         elif key in keys_status[DELETED]:
             diff[key] = safe_put(DELETED, value)
