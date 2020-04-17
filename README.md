@@ -12,7 +12,7 @@
 
 [![Build Status](https://travis-ci.org/whitehamster26/python-project-lvl2.svg?branch=master)](https://travis-ci.org/whitehamster26/python-project-lvl2)
 
-<h3>Usage<h3>
+<h3>Usage</h3>
 
 <code>gendiff [-h] [-f FORMAT] first_file second_file</code>
 
