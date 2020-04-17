@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "whitehamster26_gendiff"
-version = "0.4.2"
+version = "0.5.0"
 description = "Show the difference between two config files"
 authors = ["whitehamster26"]
 packages = [

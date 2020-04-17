@@ -11,6 +11,16 @@ parser.add_argument('-f', '--format', type=str, help='set format of \
     output')
 
 
+def catch_exceptions(func):
+    def safe_run():
+        try:
+            func()
+        except Exception as e:
+            print('Error:', str(e))
+    return safe_run
+
+
+@catch_exceptions
 def main():
     args = parser.parse_args()
     format_diff = None

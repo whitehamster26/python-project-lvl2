@@ -15,4 +15,4 @@ def _parse_data(format, source_file):
         elif format in ('.yaml', '.yml'):
             return yaml.safe_load(f)
         else:
-            raise Exception('Fromat is not supported.')
+            raise Exception('This file format is not supported.')

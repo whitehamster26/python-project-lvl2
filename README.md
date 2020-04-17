@@ -1,4 +1,8 @@
-<h2>Project is in process</h2>
+<h2>The Second Hexlet Project</h2>
+
+<h3>Installation</h3>
+
+<code>python3 -m pip install --no-cache-dir --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ whitehamster26-gendiff</code>
 
 <h3>CodeClimate Badges</h3>
 
@@ -8,24 +12,35 @@
 
 [![Build Status](https://travis-ci.org/whitehamster26/python-project-lvl2.svg?branch=master)](https://travis-ci.org/whitehamster26/python-project-lvl2)
 
-<h3>Demo</h3>
+<h3>Usage<h3>
 
-<h4>Json comparison</h4>
+<code>gendiff [-h] [-f FORMAT] first_file second_file</code>
+<p>Supported output formats: plain, json and json-like by default</p>
+<p>Supported file formats: .yaml, .json</p>
+
+<h3>Description</h3>
+
+<p>This CLI utility helps to find out which value in config was changed</p>
+<p>There's three way to show the difference</p>
+
+<h4>Json-like output</h4>
+
+<h5>Json files comparsion</h5>
 
 [![asciicast](https://asciinema.org/a/xyYxx7vzB43SnRGfR0XZZTbyQ.svg)](https://asciinema.org/a/xyYxx7vzB43SnRGfR0XZZTbyQ)
 
-<h4>Yaml comparison</h4>
+<h5>Yaml files comparison</h5>
 
 [![asciicast](https://asciinema.org/a/nWE8DUCD65IK838nGawiJznVM.svg)](https://asciinema.org/a/nWE8DUCD65IK838nGawiJznVM)
 
-<h4>Comparison of nested structures</h4>
+<h5>Comparison of nested structures</h5>
 
 [![asciicast](https://asciinema.org/a/m9ifVQ6qxjAJjUFyc3jl7AjnG.svg)](https://asciinema.org/a/m9ifVQ6qxjAJjUFyc3jl7AjnG)
 
-<h4>Plain text format demo</h4>
+<h4>Plain text format</h4>
 
 [![asciicast](https://asciinema.org/a/nqySFLZ6i4mdFbvpS9uCXXiRq.svg)](https://asciinema.org/a/nqySFLZ6i4mdFbvpS9uCXXiRq)
 
-<h4>Json format demo</h4>
+<h4>Json format</h4>
 
-[![asciicast](https://asciinema.org/a/aBUNdnQIw5teZln9cHKMdaVbG.svg)](https://asciinema.org/a/aBUNdnQIw5teZln9cHKMdaVbG)
+[![asciicast](https://asciinema.org/a/nKeXSNnLhHTlB2wWOcblv2plE.svg)](https://asciinema.org/a/nKeXSNnLhHTlB2wWOcblv2plE)
