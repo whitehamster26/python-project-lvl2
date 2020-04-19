@@ -13,9 +13,9 @@ def get_data(source_file):
         return _parse_data(file_format, source_file)
 
 
-def _parse_data(format, source_file):
+def _parse_data(file_format, source_file):
     with open(source_file, 'r') as f:
-        if format == JSON:
+        if file_format == JSON:
             return json.load(f)
-        elif format in (YAML, YML):
+        elif file_format in (YAML, YML):
             return yaml.safe_load(f)
